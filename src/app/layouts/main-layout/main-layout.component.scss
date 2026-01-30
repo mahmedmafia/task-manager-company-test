@@ -1,0 +1,16 @@
+.main-layout {
+  width: 100vw;
+  height: 100vh;
+}
+.main-content {
+  display: flex;
+  height: calc(100vh - 60px);
+  background-color: #f5f7fa;
+}
+app-side-bar {
+  height: 100%;
+  width: 240px;
+  background-color: white;
+  box-shadow: 0px 2px 4px 0px #00000014;
+  padding: 24px;
+}
