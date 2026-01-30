@@ -1,3 +1,5 @@
+@use "styles/variables" as *;
+
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -42,7 +44,7 @@
   }
 
   .change.negative {
-    color: #d32f2f;
+    color: $danger-color;
   }
 
   .change.neutral {

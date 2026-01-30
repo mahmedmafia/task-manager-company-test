@@ -18,9 +18,9 @@
   </div>
 
 
-  <div class="footer">
-    <div class="assignee">
-      <app-avatar-profile *ngIf="task.assignee" [initials]="task.assignee.avatar" [size]="'sm'"></app-avatar-profile>
+  <div class="footer" *ngIf="task.assignee">
+    <div class="assignee" >
+      <app-avatar-profile  [initials]="task.assignee.avatar" [size]="'sm'"></app-avatar-profile>
       <div class="assignee-name">{{ task.assignee.name }}</div>
     </div>
   </div>
