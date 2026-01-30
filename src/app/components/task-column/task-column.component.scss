@@ -1,0 +1,30 @@
+.column {
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px 0px #00000014;
+  background-color: white;
+  .task-list {
+    height: 450px;
+    overflow-y: auto;
+  }
+}
+h3 {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e0e0e0;
+  margin-bottom: 15px;
+}
+.badge {
+  width: 30px;
+  height: 23.190000534057617px;
+  opacity: 1;
+  border-radius: 12px;
+  background: #e0e0e0;
+  width: 30px;
+  aspect-ratio: 1;
+  font-size: calc(30px / 2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,18 @@
+<div class="task-filter">
+  @for(status of statusOptions;track status.value) {
+  <button (click)="statusFilter.set(status.value)" [class.active]="statusFilter() === status.value">{{ status.label
+    }}</button>
+  }
+  <select (change)="priorityFilter.set($any($event.target).value)">
+    @for(priority of priorityOptions; track priority.value) {
+    <option [value]="priority.value" [selected]="priorityFilter() === priority.value">{{ priority.label }}
+    </option>
+    }
+  </select>
+</div>
+<div class="board">
+  @for(status of statuses(); track status) {
+  <app-task-column [title]="status.label" [tasks]="tasks() | taskFilter:statusFilter():priorityFilter()">
+  </app-task-column>
+  }
+</div>
