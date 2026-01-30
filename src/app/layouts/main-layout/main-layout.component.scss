@@ -1,11 +1,17 @@
-.main-layout {
-  width: 100vw;
-  height: 100vh;
+$topbar-height: 64px;
+app-topbar::ng-deep {
+  header{
+    height: $topbar-height;
+  }
 }
 .main-content {
   display: flex;
-  height: calc(100vh - 60px);
+  height: calc(100vh - $topbar-height);
   background-color: #f5f7fa;
+  .focus-area{
+    flex-grow: 1;
+    padding: 24px;
+  }
 }
 app-side-bar {
   height: 100%;
