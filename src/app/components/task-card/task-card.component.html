@@ -1,4 +1,4 @@
-<div  class="task-card" [class.overdue]="isOverDue()">
+<div class="task-card" [class.overdue]="task.isOverdue==true">
   <div class="card-header">
     <span class="priority {{ task.priority }}">{{ task.priority | uppercase }}</span>
     <button class="menu" aria-label="menu">⋮</button>
@@ -8,22 +8,20 @@
   <p class="description">{{ task.description }}</p>
 
   <div class="meta">
-    <div class="status" >
+    <div class="status">
       <span class="overdue-text">{{ overDueText() }} </span>
     </div>
-    <div class="category" *ngIf="task.tags?.length">
-      <span *ngFor="let tag of task.tags;let i=index">{{ tag }} <ng-container *ngIf="i < task.tags.length - 1">, </ng-container></span>
+    <div class="category" *ngIf="task.tags && task.tags.length > 0">
+      <span *ngFor="let tag of task.tags;let i=index">{{ tag }} <ng-container *ngIf="i < task.tags.length - 1">,
+        </ng-container></span>
     </div>
   </div>
 
 
   <div class="footer">
     <div class="assignee">
-      <div class="avatar">
-        <span *ngIf="task.assignee?.avatar">{{ task.assignee.avatar }}</span>
-      </div>
+      <app-avatar-profile *ngIf="task.assignee" [initials]="task.assignee.avatar" [size]="'sm'"></app-avatar-profile>
       <div class="assignee-name">{{ task.assignee.name }}</div>
     </div>
   </div>
 </div>
-

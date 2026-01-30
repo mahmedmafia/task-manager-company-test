@@ -1,4 +1,4 @@
-@import "../../../../styles/variables";
+@use "styles/variables" as *;
 
 .topbar {
   position: sticky;
@@ -31,18 +31,7 @@ h2 {
   font-weight: bold;
   color: $primary-color;
 }
-.avatar {
-  $avatr-size: 40px;
-  background-color: $primary-color;
-  border-radius: 50%;
-  width: $avatr-size;
-  aspect-ratio: 1;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: calc($avatr-size / 2);
-}
+
 .input-container {
   --container-padding-end: 17px;
   width: 400px;

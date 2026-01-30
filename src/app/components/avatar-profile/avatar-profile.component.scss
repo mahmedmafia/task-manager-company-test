@@ -1,0 +1,5 @@
+@use "styles/mixins" as *;
+
+.avatar--sm{ @include avatar-size(24px); }
+.avatar--md { @include avatar-size(30px); }
+.avatar--lg { @include avatar-size(40px); }
