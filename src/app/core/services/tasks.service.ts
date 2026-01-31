@@ -8,19 +8,18 @@ import { TasksResponse, Task } from '../models/tasks.model';
 })
 export class TasksService {
 
-  // Use the proxied API endpoint (see proxy.conf.json) so calls to /api/* go to json-server
   private baseUrl = '/api/tasks';
 
   constructor(private http: HttpClient) { }
   tasks = signal<TasksResponse>({ tasks: [], meta: { totalCount: 0, lastUpdated: new Date().toISOString() } })
-  /**
-   * Get all tasks from json-server and adapt to TasksResponse shape
-   */
+  tasksLoaded=signal(false);
   getTasks() {
+    if(this.tasksLoaded()) return;
     this.http.get<Task[]>(this.baseUrl).pipe(
       map(tasks => ({ tasks, meta: { totalCount: tasks.length, lastUpdated: new Date().toISOString() } }))
     ).subscribe(res => {
       this.tasks.set(res);
+      this.tasksLoaded.set(true);
     });
   }
 

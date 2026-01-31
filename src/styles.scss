@@ -1,7 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+@layer reset {
+  @import url("./styles/reset.css");
+}
 
-@import "./styles/reset";
+/* BOOTSTRAP */
+@layer bootstrap {
+  @import url("bootstrap/scss/reboot");
+}
 
+/* PRIMENG */
+@layer primeng {
+  @import url("primeng/resources/primeng.min.css");
+  @import url("primeng/resources/themes/lara-light-blue/theme.css");
+}
+@layer reset, bootstrap-reboot, primeng;
 /* Dialog specific overrides for UpdateTask dialog */
 
 /* Improve default dialog look */

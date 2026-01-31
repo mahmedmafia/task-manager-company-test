@@ -7,3 +7,6 @@ export function getDiffInDays(data: string): number {
   const diffInDays = diffMs / (1000 * 60 * 60 * 24);
   return diffInDays;
 }
+export function comparedDate(a: string, b: string): number {
+  return new Date(b).getTime() - new Date(a).getTime()
+}

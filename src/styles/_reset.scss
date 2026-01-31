@@ -5,12 +5,14 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   font-family: Arial, sans-serif;
 }
 
-ul, li {
+ul,
+li {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -26,13 +28,8 @@ img {
   height: auto;
 }
 
-button {
-  border: none;
-  padding: 0;
-  cursor: pointer;
-}
-
-input, textarea {
+input,
+textarea {
   border: none;
   outline: none;
   padding: 0;

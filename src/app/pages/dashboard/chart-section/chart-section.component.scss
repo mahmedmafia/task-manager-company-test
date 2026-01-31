@@ -1,0 +1,45 @@
+@use "styles/variables" as *;
+
+.card {
+  border: 0px;
+}
+.btn-group {
+  display: flex;
+  justify-content: center;
+  border-radius: 0px;
+  height: 30px;
+  button {
+    &:nth-of-type(1){
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+    }
+    &:nth-of-type(2){
+        border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+  }
+}
+.pie_card {
+  height: 100%;
+}
+.charts_container {
+  border-radius: 12px;
+  border-radius: 12px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+
+  box-shadow: $card-shadow;
+}
+::ng-deep {
+  canvas {
+    // height: 300px;
+    height: 200px;
+  }
+}
+:host {
+  .charts_container  {
+    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+}

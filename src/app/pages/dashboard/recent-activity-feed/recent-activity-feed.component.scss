@@ -1,0 +1,5 @@
+@use '/styles/variables' as *;
+.card{
+  border: 0;
+  box-shadow: $card-shadow;
+}
