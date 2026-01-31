@@ -1,120 +1,22 @@
 {
   "tasks": [
     {
-      "id": "task-001",
-      "title": "Design new homepage layout",
+      "title": "Design new homepage layo",
       "description": "Create wireframes and mockups for the new homepage redesign with modern UI elements",
       "status": "todo",
       "priority": "high",
       "dueDate": "2026-02-01",
+      "tags": [
+        "Design"
+      ],
       "assignee": {
         "id": "user-001",
         "name": "John Doe",
         "avatar": "JD",
-        "email": "john.doe@company.com"
+        "email": "john.doe@example.com"
       },
-      "tags": [
-        "Design"
-      ],
-      "createdAt": "2026-01-28T19:16:39.839Z",
-      "updatedAt": "2026-01-30T19:16:39.839Z"
-    },
-    {
-      "id": "task-002",
-      "title": "Update documentation",
-      "description": "Review and update API documentation for v2.0 release",
-      "status": "todo",
-      "priority": "medium",
-      "dueDate": "2026-02-04",
-      "assignee": {
-        "id": "user-002",
-        "name": "Sarah Smith",
-        "avatar": "SS",
-        "email": "sarah.smith@company.com"
-      },
-      "tags": [
-        "Documentation"
-      ],
-      "createdAt": "2026-01-27T19:16:39.839Z",
-      "updatedAt": "2026-01-29T19:16:39.839Z"
-    },
-    {
-      "id": "task-003",
-      "title": "Organize team meeting",
-      "description": "Schedule and prepare agenda for quarterly planning session",
-      "status": "todo",
-      "priority": "low",
-      "dueDate": "2026-02-06",
-      "assignee": {
-        "id": "user-003",
-        "name": "Mike Johnson",
-        "avatar": "MJ",
-        "email": "mike.johnson@company.com"
-      },
-      "tags": [
-        "Admin"
-      ],
-      "createdAt": "2026-01-26T19:16:39.839Z",
-      "updatedAt": "2026-01-29T19:16:39.839Z"
-    },
-    {
-      "id": "task-015",
-      "title": "Prepare Q4 budget report",
-      "description": "Compile and analyze financial data for quarterly budget presentation",
-      "status": "todo",
-      "priority": "high",
-      "dueDate": "2026-01-28",
-      "isOverdue": true,
-      "assignee": {
-        "id": "user-002",
-        "name": "Sarah Smith",
-        "avatar": "SS",
-        "email": "sarah.smith@company.com"
-      },
-      "tags": [
-        "Finance"
-      ],
-      "createdAt": "2026-01-14T19:16:39.839Z",
-      "updatedAt": "2026-01-30T19:16:39.839Z"
-    },
-    {
-      "id": "task-016",
-      "title": "Review client feedback",
-      "description": "Analyze customer feedback from user testing sessions",
-      "status": "todo",
-      "priority": "medium",
-      "dueDate": "2026-01-27",
-      "isOverdue": true,
-      "assignee": {
-        "id": "user-004",
-        "name": "Emily Davis",
-        "avatar": "ED",
-        "email": "emily.davis@company.com"
-      },
-      "tags": [
-        "Research"
-      ],
-      "createdAt": "2026-01-15T19:16:39.839Z",
-      "updatedAt": "2026-01-29T19:16:39.839Z"
-    },
-    {
-      "id": "task-004",
-      "title": "Fix responsive design issues",
-      "description": "Address layout problems on mobile and tablet devices",
-      "status": "todo",
-      "priority": "high",
-      "dueDate": "2026-02-02",
-      "assignee": {
-        "id": "user-004",
-        "name": "Emily Davis",
-        "avatar": "ED",
-        "email": "emily.davis@company.com"
-      },
-      "tags": [
-        "Frontend"
-      ],
-      "createdAt": "2026-01-25T19:16:39.839Z",
-      "updatedAt": "2026-01-30T19:16:39.839Z"
+      "id": "task-001",
+      "isOverdue": false
     },
     {
       "id": "task-005",
@@ -334,20 +236,11 @@
       "updatedAt": "2026-01-25T19:16:39.839Z"
     },
     {
-      "title": "ewqewq",
-      "description": "eqwewq",
+      "title": "Heqw",
+      "description": "",
       "status": "todo",
       "priority": "medium",
-      "dueDate": "2026-01-30",
-      "tags": [],
-      "id": "jeOhDEP"
-    },
-    {
-      "title": "eeqw",
-      "description": "wqewq",
-      "status": "todo",
-      "priority": "medium",
-      "dueDate": "2026-01-30",
+      "dueDate": "2026-01-31",
       "tags": [],
       "assignee": {
         "id": "user-001",
@@ -355,7 +248,8 @@
         "avatar": "JD",
         "email": "john.doe@example.com"
       },
-      "id": "mERDuII"
+      "isOverdue": false,
+      "id": "mAMTXsI"
     }
   ],
   "statistics": [

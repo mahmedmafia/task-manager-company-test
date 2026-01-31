@@ -5,12 +5,13 @@
 }
 
 .dialog_body {
-  padding: 10px;
   height: calc(100% - 60px);
   overflow: auto;
   @media (max-width: 768px) {
     height: calc(100% - 100px);
   }
+  padding: 14px 11px;
+  padding-top: 0px;
 }
 .form-label {
   font-weight: 600;

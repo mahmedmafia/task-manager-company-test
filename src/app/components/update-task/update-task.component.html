@@ -1,70 +1,74 @@
-<form *ngIf="form" [formGroup]="form" class="dialog_form">
-  <div class="dialog_body mb-3">
-    <div class="p-grid p-fluid mx-0">
-      <div class="p-col-12 p-md-12">
-        <div class="mb-3">
-          <label class="form-label">Title *</label>
-          <input formControlName="title" type="text" class="form-control" placeholder="Task title" />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label">Description</label>
-          <textarea formControlName="description" class="form-control" rows="3" placeholder=" Description"></textarea>
-        </div>
-
-        <div class="row g-2">
-          <div class="col-md-6">
-            <label class="form-label">Assignne *</label>
-            <select formControlName="assignee" class="form-select">
-              <option *ngFor="let u of users()" [value]="u">{{ u.name}}</option>
-            </select>
-          </div>
-          <div class="col-md-6">
-            <label class="form-label">Status</label>
-            <select formControlName="status" class="form-select">
-              <option *ngFor="let s of statuses" [value]="s.value">{{ s.label }}</option>
-            </select>
+  <form *ngIf="form" [formGroup]="form" class="dialog_form">
+    <div class="dialog_body mb-3">
+      <div class="p-grid p-fluid mx-0">
+        <div class="p-col-12 p-md-12">
+          <div class="mb-3">
+            <label class="form-label">Title *</label>
+            <input formControlName="title" type="text" class="form-control" placeholder="Task title" />
           </div>
 
-          <div class="col-md-6">
-            <label class="form-label">Priority</label>
-            <select formControlName="priority" class="form-select">
-              <option *ngFor="let p of priorities" [value]="p.value">{{ p.label }}</option>
-            </select>
+          <div class="mb-3">
+            <label class="form-label">Description</label>
+            <textarea formControlName="description" class="form-control" rows="3" placeholder=" Description"></textarea>
           </div>
 
-          <div class="col-md-6">
-            <label class="form-label" for="calendarButton">Due date *</label>
-            <p-calendar inputId="calendarButton" appendTo="body" formControlName="dueDate" [showIcon]="true"
-              [showOnFocus]="false" dateFormat="yy-mm-dd" type="date" />
-          </div>
+          <div class="row g-2">
+            <div class="col-md-6">
+              <label class="form-label">Assignne *</label>
+              <select formControlName="assignee" class="form-select">
+                <option *ngFor="let u of users()" [ngValue]="u">{{ u.name}}</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Status</label>
+              <select formControlName="status" class="form-select">
+                <option *ngFor="let s of statuses" [value]="s.value">{{ s.label }}</option>
+              </select>
+            </div>
 
-          <div class="col-md-6">
-            <label class="form-label">Tags</label>
+            <div class="col-md-6">
+              <label class="form-label">Priority</label>
+              <select formControlName="priority" class="form-select">
+                <option *ngFor="let p of priorities" [value]="p.value">{{ p.label }}</option>
+              </select>
+            </div>
 
-            <input #tag formControlName="tags" type="text" class="form-control mb-1" placeholder="Design"
-              (keyup.enter)="addTag(tag.value); $event.preventDefault();" />
-            <div class="tag-input  p-1">
-              <span class="badge tag" *ngFor="let tag of tags; let i = index">
-                {{ tag }}
-                <button type="button" class="btn-close btn-close-white ms-2" aria-label="Remove"
-                  (click)="removeTag(tag)"></button>
-              </span>
+            <div class="col-md-6">
+              <label class="form-label" for="duecalendarButton">Due date *</label>
+              <p-calendar [disabled]="isCompletedAt()" inputId="duecalendarButton" appendTo="body" formControlName="dueDate" [showIcon]="true"
+                [showOnFocus]="false" dateFormat="yy-mm-dd" type="date" />
+            </div>
+            <div class="col-md-6" *ngIf="isCompletedAt()">
+              <label class="form-label" for="completedcalendarButton">Completed At</label>
+              <p-calendar inputId="completedcalendarButton"  [maxDate]="today" appendTo="body" formControlName="completedAt" [showIcon]="true"
+                [showOnFocus]="false" dateFormat="yy-mm-dd" type="date" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Tags</label>
+
+              <input #tag formControlName="tags" type="text" class="form-control mb-1" placeholder="Design"
+                (keyup.enter)="addTag(tag.value); $event.preventDefault();" />
+              <div class="tag-input  p-1">
+                <span class="badge tag" *ngFor="let tag of tags; let i = index">
+                  {{ tag }}
+                  <button type="button" class="btn-close btn-close-white ms-2" aria-label="Remove"
+                    (click)="removeTag(tag)"></button>
+                </span>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-  </div>
-  <div class="row p-fluid dialog_actions mx-0">
-    <div class="col-md-2">
-      <button class="save" [loading]="isLoading" [disabled]="isLoading" (click)="save()" label="save" pButton
-        type="button" icon="pi pi-save" iconPos="left"></button>
     </div>
-    <div class="col-md-2">
-      <button class="cancel" [disabled]="isLoading" (click)="close()" label="cancel" pButton type="button"
-        icon="pi pi-times" iconPos="left" class="p-button-danger"></button>
+    <div class="row p-fluid dialog_actions mx-0">
+      <div class="col-md-2">
+        <button class="save" [loading]="isLoading" [disabled]="isLoading" (click)="save()" label="save" pButton
+          type="button" icon="pi pi-save" iconPos="left"></button>
+      </div>
+      <div class="col-md-2">
+        <button class="cancel" [disabled]="isLoading" (click)="close()" label="cancel" pButton type="button"
+          icon="pi pi-times" iconPos="left" class="p-button-danger"></button>
+      </div>
     </div>
-  </div>
-</form>
+  </form>

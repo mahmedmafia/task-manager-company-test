@@ -16,7 +16,7 @@ export class UsersService {
   constructor(private http: HttpClient) { }
   private readonly _loaded = signal(false);
 
-  getUsers(forceRefresh = false) {
+  getUsers() {
     if (this._loaded()) return;
      this.http.get<User[]>(this.baseUrl).subscribe({
       next: users => {

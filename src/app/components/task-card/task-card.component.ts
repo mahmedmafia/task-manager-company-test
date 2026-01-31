@@ -1,65 +1,65 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, ChangeDetectionStrategy, Component, Input, signal, Signal } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, inject, Input, signal, Signal } from '@angular/core';
 import { Task } from '../../core/models/tasks.model';
 import { AvatarProfileComponent } from "../avatar-profile/avatar-profile.component";
+import { TasksUtils } from '../../core/helpers/tasks.util';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { TaskDialogService } from '../../core/services/task-dialog.service';
+import { UsersService } from '../../core/services/users.service';
+import { OverlayPanelModule } from 'primeng/overlaypanel'
+import { ButtonModule } from 'primeng/button';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { TasksService } from '../../core/services/tasks.service';
 
 @Component({
   selector: 'app-task-card',
   standalone: true,
-  imports: [CommonModule, AvatarProfileComponent],
+  imports: [CommonModule, AvatarProfileComponent, OverlayPanelModule, ButtonModule, ConfirmDialogModule],
   templateUrl: './task-card.component.html',
   styleUrl: './task-card.component.scss',
+  providers: [ConfirmationService],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TaskCardComponent implements AfterViewInit {
+  @Input({ required: true }) task!: Task;
+  ref: DynamicDialogRef | undefined;
+  messageServ = inject(MessageService);
+  taskDialogService = inject(TaskDialogService);
+  usersService = inject(UsersService);
   overDueText = signal<string>('');
+  confirmationServ = inject(ConfirmationService);
+  taskServ = inject(TasksService);
   ngAfterViewInit(): void {
     if (this.task) {
-      this.overDueText.set(this.getOverdueDays(this.task));
+      this.overDueText.set(TasksUtils.getOverdueText(this.task));
     }
   }
-  @Input({ required: true }) task!: Task;
-  getOverdueDays(task: Task): string {
-    let diffInDays = 0;
-    let result: string;
-    let prefix: string;
-    const getDescription = (days: number): string => {
-      const absDays = Math.abs(days);
-      if (absDays === 0) return '';
-      if (absDays % 7 === 0) {
-        const weeks = absDays / 7;
-        return `${weeks} week${weeks > 1 ? 's' : ''}`;
-      }
-      return `${absDays} day${absDays > 1 ? 's' : ''}`;
-    };
-    if (task.status === 'done' && task.completedAt) {
-      diffInDays = this.getDiffInDays(task.completedAt);
-      prefix = '✅ completed';
-      result = `${prefix} ${getDescription(diffInDays)} ago`;
 
-    } else {
-      prefix = '📅 due';
-      diffInDays = this.getDiffInDays(task.dueDate);
-      result = diffInDays > 0 && ![0, 1].includes(diffInDays) ? `⚠️ Overdue by ${getDescription(diffInDays)}` : `${prefix} in ${getDescription(diffInDays)}`;
-    }
-    switch (diffInDays) {
-      case 0:
-        result = `${prefix} today`;
-        break;
-      case 1:
-        result = `${prefix} yesterday`;
-        break;
-    }
-    return result;
-
+  editTask(t: any): void {
+    this.ref = this.taskDialogService.open(this.task);
   }
-  getDiffInDays(data: string): number {
-    const due = new Date(data);
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    due.setHours(0, 0, 0, 0);
-    const diffMs = today.getTime() - due.getTime();
-    const diffInDays = diffMs / (1000 * 60 * 60 * 24);
-    return diffInDays;
+  deleteTask(event: Event) {
+    this.confirmationServ.confirm({
+      key: 'confirm1',
+      target: event.target as EventTarget,
+      message: 'Do you want to delete this record?',
+      header: 'Delete Confirmation',
+      icon: 'pi pi-trash',
+      acceptButtonStyleClass: "p-button-danger p-button-sm",
+      rejectButtonStyleClass: "p-button-sm p-button-sm",
+      acceptIcon: "none",
+      rejectIcon: "none",
+      accept: () => {
+        this.taskServ.deleteTask(this.task.id).subscribe({
+          next: (res) => {
+            this.messageServ.add({ severity: 'success', summary: 'Success', detail: undefined, life: 1000 });
+          }, error: (err) => {
+            this.messageServ.add({ severity: 'danger', summary: 'Fail', detail: undefined, life: 1000 });
+
+          }
+        });
+      },
+    });
   }
 }

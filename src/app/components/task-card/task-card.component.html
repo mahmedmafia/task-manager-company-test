@@ -1,7 +1,23 @@
 <div class="task-card" [class.overdue]="task.isOverdue==true">
   <div class="card-header">
     <span class="priority {{ task.priority }}">{{ task.priority | uppercase }}</span>
-    <button class="menu" aria-label="menu">⋮</button>
+    <div class="menu" aria-label="menu">
+      <button type="button" class="menu-btn" (click)="op.toggle($event)">
+        <i class="pi pi-ellipsis-v"></i>
+      </button>
+      <p-overlayPanel #op [dismissable]="true" [showCloseIcon]="false" styleClass="custom-overlay">
+        <div class="overlay-actions">
+          <div class="overlay-item" (click)="editTask(task)">
+            <i class="pi pi-pencil"></i>
+            <span>Edit</span>
+          </div>
+          <div class="overlay-item" (click)="deleteTask($event)">
+            <i class="pi pi-trash"></i>
+            <span>Delete</span>
+          </div>
+        </div>
+      </p-overlayPanel>
+    </div>
   </div>
 
   <h4 class="title">{{ task.title }}</h4>
@@ -19,9 +35,11 @@
 
 
   <div class="footer" *ngIf="task.assignee">
-    <div class="assignee" >
-      <app-avatar-profile  [initials]="task.assignee.avatar" [size]="'sm'"></app-avatar-profile>
+    <div class="assignee">
+      <app-avatar-profile [initials]="task.assignee.avatar" [size]="'sm'"></app-avatar-profile>
       <div class="assignee-name">{{ task.assignee.name }}</div>
     </div>
   </div>
+  <p-confirmDialog  key="confirm1" icon="fa-solid fa-trash-can"/>
 </div>
+
