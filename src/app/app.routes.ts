@@ -1,13 +1,20 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
   {
     path: '',
     loadComponent: () =>
       import('./layouts/public-layout/public-layout.component').then(m => m.PublicLayoutComponent),
+    children: [
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      { path: 'login', loadComponent: () => import('./pages/login/login.component').then(m => m.LoginComponent) },
+    ]
   },
   {
     path: 'main',
+    canActivate: [authGuard],
+    canActivateChild: [authGuard],
     loadComponent: () =>
       import('./layouts/main-layout/main-layout.component').then(m => m.MainLayoutComponent),
     children: [
@@ -21,9 +28,8 @@ export const routes: Routes = [
         path: 'tasks',
         loadComponent: () =>
           import('./pages/tasks/tasks.component').then(m => m.TasksComponent),
-      }
-      // other child routes here
+      },
     ],
   },
-  { path: '**', redirectTo: '' }, // catch-all
+  { path: '**', redirectTo: 'login' },
 ];

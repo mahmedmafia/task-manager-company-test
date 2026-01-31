@@ -1,0 +1,38 @@
+@use "styles/variables" as *;
+.container-fluid {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: black;
+  padding: 1rem;
+}
+
+.card {
+  width: 100%;
+  max-width: 400px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  padding: 2rem;
+}
+
+.title {
+  margin: 0 0 8px 0;
+  font-weight: 600;
+  color: $primary-color;
+  text-align: center;
+}
+
+.subtitle {
+  margin: 0 0 1.5rem 0;
+  font-size: 0.95rem;
+  color: #666;
+  text-align: center;
+}
+
+.btn-primary {
+  padding: 4px 16px;
+  font-weight: 600;
+  background-color: $primary-color;
+}

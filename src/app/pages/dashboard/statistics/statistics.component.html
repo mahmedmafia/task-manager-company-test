@@ -1,5 +1,5 @@
 <div class="row justify-content-between">
-  <div *ngFor="let stat of statistics$ | async; trackBy: trackByStatId" class="col-3">
+  <div *ngFor="let stat of statsService.statistics().statistics; trackBy: trackByStatId" class="col-3">
     <div class="stat-card  ">
       <div class="header"><span class="icon" [style.color]="stat.color">{{ stat.icon }}</span><span class="title"> {{
           stat.title }}</span></div>
@@ -9,5 +9,4 @@
       </div>
     </div>
   </div>
-
 </div>

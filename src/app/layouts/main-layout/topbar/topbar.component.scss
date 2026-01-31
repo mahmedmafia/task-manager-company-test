@@ -1,5 +1,7 @@
 @use "styles/variables" as *;
-
+app-avatar-profile {
+  cursor: pointer;
+}
 .topbar {
   position: sticky;
   top: 0;
@@ -56,4 +58,27 @@ h2 {
       var(--container-padding-end) + var(--icon-padding-end)
     );
   }
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logout-btn {
+  padding: 6px 12px;
+  font-size: 0.875rem;
+  color: $primary-color;
+  background: transparent;
+  border: 1px solid $primary-color;
+  border-radius: 4px;
+  cursor: pointer;
+  &:hover {
+    background: rgba($primary-color, 0.08);
+  }
+}
+
+::ng-deep .topbar-overlay {
+  transform: translateX(10px) !important;
 }

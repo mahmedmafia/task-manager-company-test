@@ -1,10 +1,21 @@
 <header class="topbar">
-<h2><span class="logo"><span class="icon">📖</span></span>Task Manager</h2>
+  <h2><span class="logo"><span class="icon">📖</span></span>Task Manager</h2>
 
-<div class="input-container">
-  <span class="icon">🔍</span>
-  <input type="text" placeholder="Search tasls..." />
-</div>
+  <div class="input-container">
+    <span class="icon">🔍</span>
+    <input type="text" placeholder="Search tasks..." [value]="searchValue()"
+      (input)="searchValue.set($any($event.target).value)" />
+  </div>
 
-<app-avatar-profile [initials]="'JD'"></app-avatar-profile>
+  <div class="topbar-actions">
+    <app-avatar-profile [initials]="userInitials()" (click)="op.toggle($event)"></app-avatar-profile>
+    <p-overlayPanel #op [dismissable]="true" [showCloseIcon]="false" styleClass="custom-overlay topbar-overlay">
+      <div class="overlay-actions">
+        <div class="overlay-item" (click)="logout()">
+          <i class="pi pi-sign-out"></i>
+          <span>Logout</span>
+        </div>
+      </div>
+    </p-overlayPanel>
+  </div>
 </header>

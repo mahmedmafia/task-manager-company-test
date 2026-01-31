@@ -1,0 +1,51 @@
+<div class="container-fluid">
+  <div class="card">
+    <h1 class="title">Task Manager</h1>
+    <p class="subtitle">Sign in to continue</p>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      @if (errorMessage) {
+      <div class="alert alert-danger mb-3" role="alert">
+        {{ errorMessage }}
+      </div>
+      }
+
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input id="email" type="email" formControlName="email" class="form-control" placeholder="you@example.com"
+          [class.is-invalid]="form.get('email')?.invalid && form.get('email')?.touched" />
+        @if (form.get('email')?.invalid && form.get('email')?.touched) {
+        <div class="invalid-feedback d-block">
+          @if (form.get('email')?.errors?.['required']) {
+          Email is required.
+          }
+          @if (form.get('email')?.errors?.['email']) {
+          Enter a valid email address.
+          }
+        </div>
+        }
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input id="password" type="password" formControlName="password" class="form-control" placeholder="••••••••"
+          [class.is-invalid]="form.get('password')?.invalid && form.get('password')?.touched" />
+        @if (form.get('password')?.invalid && form.get('password')?.touched) {
+        <div class="invalid-feedback d-block">
+          @if (form.get('password')?.errors?.['required']) {
+          Password is required.
+          }
+          @if (form.get('password')?.errors?.['minlength']) {
+          Password must be at least 4 characters.
+          }
+        </div>
+        }
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100" [disabled]="isLoading || form.invalid">
+        Sign in
+      </button>
+
+    </form>
+  </div>
+</div>

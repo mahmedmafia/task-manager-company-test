@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Stat, StatisticsService } from './statistics.service';
-import { map, Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { DialogService } from 'primeng/dynamicdialog';
 
@@ -15,10 +14,9 @@ import { DialogService } from 'primeng/dynamicdialog';
 })
 export class StatisticsComponent {
   statsService = inject(StatisticsService);
-  statistics$!: Observable<Stat[]>;
 
   ngOnInit() {
-    this.statistics$ = this.statsService.getStatistics().pipe(map(response => response.statistics));
+    this.statsService.getStatistics();
   }
   trackByStatId(index: number, stat: Stat): string {
     return stat.id;
