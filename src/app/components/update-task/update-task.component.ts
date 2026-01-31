@@ -48,7 +48,7 @@ export class UpdateTaskComponent implements OnInit {
   initForm() {
     this.form = this.fb.nonNullable.group({
       title: ['', Validators.required],
-      description: [''],
+      description: ['',Validators.required],
       status: ['todo' as TaskStatus, Validators.required],
       priority: ['medium' as TaskPriority, Validators.required],
       dueDate: [new Date(), Validators.required],
@@ -96,7 +96,10 @@ export class UpdateTaskComponent implements OnInit {
   }
 
   save() {
-    if (this.form.invalid) return;
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
     this.isLoading = true;
     this.errorMessage = '';
     const value = this.form.getRawValue();
@@ -105,7 +108,8 @@ export class UpdateTaskComponent implements OnInit {
       ...value,
       dueDate,
       tags: this.tags || [],
-      isOverdue: getDiffInDays(dueDate) > 0
+      isOverdue: getDiffInDays(dueDate) > 0,
+      updatedAt:new Date().toISOString(),
     };
     if (payload.status == 'done') {
       delete payload.isOverdue;
@@ -114,6 +118,7 @@ export class UpdateTaskComponent implements OnInit {
     if (this.editElement && this.editElement.id) {
       updateTask$ = this.tasksService.updateTask(this.editElement.id, payload);
     } else {
+      payload.createdAt=new Date().toISOString();
       updateTask$ = this.tasksService.addTask(payload);
     }
     updateTask$.subscribe({

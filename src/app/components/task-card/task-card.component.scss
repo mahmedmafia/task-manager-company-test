@@ -102,37 +102,3 @@
   }
 }
 
-::ng-deep .custom-overlay {
-  border-radius: 8px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-  padding: 0;
-  overflow: hidden;
-
-  .overlay-actions {
-    display: flex;
-    flex-direction: column;
-
-    .overlay-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.5rem;
-      cursor: pointer;
-      transition: background 0.15s;
-
-      &:hover {
-        background-color: #f5f5f5;
-      }
-
-      i {
-        font-size: 1rem;
-        color: #555;
-      }
-
-      span {
-        font-size: 0.9rem;
-        color: #333;
-      }
-    }
-  }
-}

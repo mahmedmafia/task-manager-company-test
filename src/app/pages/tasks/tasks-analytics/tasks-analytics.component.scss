@@ -1,10 +1,9 @@
 @use "styles/variables" as *;
-$elements-padding:4px 14px;
+$elements-padding: 4px 14px;
 .task-filter-bar {
   background: white;
   height: 60px;
   padding: 4px 14px;
-  margin: 25px 0px;
   border-radius: 8px;
 }
 .task-filter {
@@ -12,10 +11,11 @@ $elements-padding:4px 14px;
   button {
     padding: $elements-padding;
     margin-inline: 8px;
+    font-weight: 400;
     &:hover,
     &.active {
-      background-color: $primary-color;
-      color: white;
+      background-color: $primary-color !important;
+      color: white !important;
     }
   }
 }
@@ -24,18 +24,7 @@ $elements-padding:4px 14px;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 16px;
 }
-select {
-  border: 1px solid #e0e0e0;
-  opacity: 1;
-  border-radius: 4px;
-  padding:$elements-padding;
 
-  &:focus,
-  &:focus-visible,
-  &:active {
-    border-color: #e0e0e0;
-  }
-}
 .new-task {
   background-color: $primary-color;
   color: white;
