@@ -1,20 +1,144 @@
-@import '../../../../styles/variables';
-ul{
-  padding: 0px;
+@use 'styles/variables' as *;
+
+$sidebar-width: 240px;
+$sidebar-collapsed-width: 64px;
+
+
+.sidebar {
+  height: 100%;
+  width: $sidebar-width;
+  min-width: $sidebar-width;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  transition: width 0.2s ease, min-width 0.2s ease, transform 0.25s ease;
+
+  &.collapsed {
+    width: $sidebar-collapsed-width;
+    min-width: $sidebar-collapsed-width;
+    padding: 16px 8px;
+
+    .nav-text {
+      opacity: 0;
+      width: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      padding-inline-end: 0;
+    }
+
+    .sidebar-header {
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    position: fixed;
+    top: $topbar-height;
+    left: 0;
+    bottom: 0;
+    z-index: 1000;
+    transform: translateX(-100%);
+    width: $sidebar-width;
+    min-width: $sidebar-width;
+
+    &.mobile-open {
+      transform: translateX(0);
+    }
+
+    &.collapsed {
+      width: $sidebar-width;
+      min-width: $sidebar-width;
+      padding: 16px;
+
+      .nav-text {
+        opacity: 1;
+        width: auto;
+        overflow: visible;
+        white-space: normal;
+      }
+    }
+  }
 }
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+  flex-shrink: 0;
+}
+
+.sidebar-toggle {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: black;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+
+  &:hover {
+    background: rgba($primary-color, 0.1);
+    color: $primary-color;
+  }
+
+  .pi {
+    font-size: 1.1rem;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    display: none;
+  }
+}
+
+.side-bar {
+  flex: 1;
+  overflow-x: hidden;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
 li {
+  margin-bottom: 4px;
+
   a {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 12px;
     padding: 8px 16px;
     color: black;
     text-decoration: none;
-    transition: background 0.2s;
+    transition: background 0.2s, color 0.2s;
     cursor: pointer;
     border-radius: 4px;
+
+    .pi {
+      flex-shrink: 0;
+      font-size: 1.15rem;
+      width: 1.25rem;
+      text-align: center;
+    }
+
+    .nav-text {
+      transition: opacity 0.2s, width 0.2s;
+      white-space: nowrap;
+    }
+
     &:hover,
     &.active {
       background-color: $primary-color;
       color: white;
+    }
+
+    &.active {
+      font-weight: 600;
     }
   }
 }

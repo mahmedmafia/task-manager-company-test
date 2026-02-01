@@ -1,16 +1,34 @@
 @use "styles/variables" as *;
+
 $elements-padding: 4px 14px;
+
 .task-filter-bar {
-  background: white;
-  height: 60px;
-  padding: 4px 14px;
-  border-radius: 8px;
-}
-.task-filter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   align-items: center;
+  gap: 12px;
+  background: white;
+  min-height: 64px;
+  padding: 12px 14px;
+  border-radius: 8px;
+
+  @media (max-width: $breakpoint-mobile) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+}
+
+.task-filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+
   button {
     padding: $elements-padding;
-    margin-inline: 8px;
+    margin: 0;
     font-weight: 400;
     &:hover,
     &.active {
@@ -18,7 +36,35 @@ $elements-padding: 4px 14px;
       color: white !important;
     }
   }
+
+
+  @media (max-width: $breakpoint-mobile) {
+    gap: 4px;
+
+    button {
+      padding: 6px 10px;
+      font-size: 0.875rem;
+    }
+  }
 }
+
+.task-filter-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+
+
+  @media (max-width: $breakpoint-mobile) {
+    flex-direction: column;
+    align-items: stretch;
+
+    p-dropdown ::ng-deep .p-dropdown {
+      width: 100% !important;
+    }
+  }
+}
+
 .board {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -32,5 +78,11 @@ $elements-padding: 4px 14px;
   padding: $elements-padding;
   border-radius: 4px;
   cursor: pointer;
-  margin-left: 5px;
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  @media (max-width: $breakpoint-mobile) {
+    width: 100%;
+    padding: 10px 14px;
+  }
 }

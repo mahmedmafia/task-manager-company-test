@@ -5,6 +5,7 @@ import { TasksService } from '../../../core/services/tasks.service';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { AuthService } from '../../../core/services/auth.service';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { SidebarService } from '../../../core/services/sidebar.service';
 
 @Component({
   selector: 'app-topbar',
@@ -17,6 +18,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 export class TopbarComponent {
   taskServ = inject(TasksService);
   auth = inject(AuthService);
+  sidebarService = inject(SidebarService);
   searchValue = signal<string | null>('');
   userInitials = computed(() => {
     const user = this.auth.getUser() ?? { name: '', email: '' };
@@ -33,5 +35,9 @@ export class TopbarComponent {
 
   logout(): void {
     this.auth.logout();
+  }
+
+  toggleSidebar(): void {
+    this.sidebarService.toggleMobile();
   }
 }

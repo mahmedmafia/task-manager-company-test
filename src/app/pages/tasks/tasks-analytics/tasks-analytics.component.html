@@ -1,19 +1,20 @@
-<div class="row ">
+<div class="row">
   <div class="col-12">
-    <div class="task-filter-bar d-flex justify-content-between align-items-center ">
+    <div class="task-filter-bar">
       <div class="task-filter">
-        @for(status of statusOptions;track status.value) {
-        <button pButton (click)="statusFilter.set(status.value)"
-          [ngClass]="statusFilter()==status.value? 'p-button-primary':'p-button-transparent'">{{ status.label
-          }}</button>
+        @for (status of statusOptions; track status.value) {
+          <button pButton (click)="statusFilter.set(status.value)"
+            [ngClass]="statusFilter() === status.value ? 'p-button-primary' : 'p-button-transparent'">
+            {{ status.label }}
+          </button>
         }
       </div>
-      <div class="d-flex gap-2 ">
+      <div class=" task-filter-actions">
         <p-dropdown [options]="priorityOptions" optionLabel="label" optionValue="value" [showClear]="false" placeholder="All"
           (onChange)="priorityFilter.set($event.value)"></p-dropdown>
         <p-dropdown [options]="users()" optionLabel="name" optionValue="id" [showClear]="true" placeholder="All users"
           (onChange)="userFilter.set($event.value)"></p-dropdown>
-        <button class="new-task" (click)="addTask()">+ New Task</button>
+        <button type="button" class="new-task" (click)="addTask()">+ New Task</button>
       </div>
     </div>
   </div>

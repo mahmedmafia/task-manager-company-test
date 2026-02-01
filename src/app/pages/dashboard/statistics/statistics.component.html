@@ -1,5 +1,6 @@
-<div class="row justify-content-between">
-  <div *ngFor="let stat of statsService.statistics().statistics; trackBy: trackByStatId" class="col-3">
+<div class="row ">
+  <div *ngFor="let stat of statsService.statistics().statistics; trackBy: trackByStatId"
+    class="col-sm-12  col-md-6  col-lg-3 mb-3 mb-lg-0">
     <div class="stat-card  ">
       <div class="header"><span class="icon" [style.color]="stat.color">{{ stat.icon }}</span><span class="title"> {{
           stat.title }}</span></div>

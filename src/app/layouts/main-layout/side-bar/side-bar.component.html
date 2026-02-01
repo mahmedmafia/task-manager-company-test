@@ -1,9 +1,29 @@
-<aside>
+<aside class="sidebar" [class.collapsed]="sidebar.isCollapsed()" [class.mobile-open]="sidebar.isMobileOpen()">
+  <div class="sidebar-header">
+    <button type="button" class="sidebar-toggle" (click)="sidebar.toggleCollapsed()" >
+      <i class="pi" [class.pi-angle-double-left]="!sidebar.isCollapsed()" [class.pi-angle-double-right]="sidebar.isCollapsed()"></i>
+    </button>
+  </div>
   <nav class="side-bar">
     <ul>
-      <li><a routerLink="/main/dashboard" routerLinkActive="active" >Dashboard</a></li>
-      <li><a routerLink="/main/tasks">Tasks</a></li>
-      <li><a routerLink="/main/calendar">Calendar</a></li>
+      <li>
+        <a routerLink="/main/dashboard" routerLinkActive="active" (click)="onNavClick()">
+          <i class="pi pi-th-large"></i>
+          <span class="nav-text">Dashboard</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/main/tasks" routerLinkActive="active" (click)="onNavClick()">
+          <i class="pi pi-list"></i>
+          <span class="nav-text">Tasks</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/main/calendar" (click)="onNavClick()">
+          <i class="pi pi-calendar"></i>
+          <span class="nav-text">Calendar</span>
+        </a>
+      </li>
     </ul>
   </nav>
 </aside>
