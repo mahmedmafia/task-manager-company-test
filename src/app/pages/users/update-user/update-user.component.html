@@ -1,0 +1,53 @@
+<form *ngIf="form" [formGroup]="form" class="dialog_form">
+  <div class="dialog_body mb-3">
+    <div class="p-grid p-fluid mx-0">
+      <div class="p-col-12 p-md-12">
+        <div class="mb-3">
+          <label class="form-label">Name *</label>
+          <input formControlName="name" type="text" class="form-control" placeholder="Name"
+            [class.is-invalid]="form.get('name')?.invalid && form.get('name')?.touched" />
+          @if (form.get('name')?.invalid && form.get('name')?.touched) {
+          <div class="invalid-feedback d-block">
+            @if (form.get('name')?.errors?.['required']) {
+            Name is required.
+            }
+            @if (form.get('name')?.errors?.['minlength']) {
+            name must be at least 4 characters.
+            }
+          </div>
+          }
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Email *</label>
+          <input formControlName="email" type="email" class="form-control" placeholder="you@example.com"
+            [class.is-invalid]="form.get('email')?.invalid && form.get('email')?.touched" />
+          @if (form.get('email')?.invalid && form.get('email')?.touched) {
+          <div class="invalid-feedback d-block">
+            @if (form.get('email')?.errors?.['required']) {
+            Email is required.
+            }
+            @if (form.get('email')?.errors?.['email']) {
+            Enter a valid email address.
+            }
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+    @if (errorMessage) {
+    <div class="alert alert-danger mb-3" role="alert">
+      {{ errorMessage }}
+    </div>
+    }
+  </div>
+  <div class="row p-fluid dialog_actions mx-0">
+    <div class="col-12 col-md-3">
+      <button class="save " [loading]="isLoading" [disabled]="isLoading || form.invalid" (click)="save()" label="save"
+        pButton type="button" icon="pi pi-save" iconPos="left"></button>
+    </div>
+    <div class="col-12 col-md-3">
+      <button class="cancel" [disabled]="isLoading" (click)="close()" label="cancel" pButton type="button"
+        icon="pi pi-times" iconPos="left" class="p-button-danger"></button>
+    </div>
+  </div>
+</form>

@@ -62,14 +62,10 @@ export class ChartSectionComponent {
         legend: {
           position: 'top',
         },
-        afterDatasetsDraw: (ch: any) => {
-          console.log(ch);
-        },
         datalabels: {
           color: '#fff',
           font: { weight: 'bold', size: 14 },
           formatter: (value: number, ctx: any) => {
-            console.log('hi');
             const dataArr = ctx.chart.data.datasets[0].data;
             const sum = dataArr.reduce((a: number, b: number) => a + b, 0);
             const percentage = (value * 100 / sum).toFixed(1) + '%';

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators, FormsModule, FormGroup, FormControl } from '@angular/forms';
 import { TasksService } from '../../core/services/tasks.service';
 import { Task, TaskPriority, TaskStatus } from '../../core/models/tasks.model';
-import {  DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ButtonModule } from 'primeng/button';
 import { TasksUtils } from '../../core/utils/tasks.util';
 import { CalendarModule } from 'primeng/calendar';
@@ -48,7 +48,7 @@ export class UpdateTaskComponent implements OnInit {
   initForm() {
     this.form = this.fb.nonNullable.group({
       title: ['', Validators.required],
-      description: ['',Validators.required],
+      description: ['', Validators.required],
       status: ['todo' as TaskStatus, Validators.required],
       priority: ['medium' as TaskPriority, Validators.required],
       dueDate: [new Date(), Validators.required],
@@ -72,11 +72,11 @@ export class UpdateTaskComponent implements OnInit {
     })
     if (this.editElement) {
       this.form.addControl('id', new FormControl(''))
-      this.tags=this.editElement.tags;
-      this.form.patchValue({...this.editElement,tags:''}, { emitEvent: true });
+      this.tags = this.editElement.tags;
+      this.form.patchValue({ ...this.editElement, tags: '' }, { emitEvent: true });
     }
   }
-  isCompletedAt=signal(false);
+  isCompletedAt = signal(false);
   tags: string[] = [];
   addTag(tag: string) {
     const value = (tag || '').toString().trim();
@@ -100,13 +100,14 @@ export class UpdateTaskComponent implements OnInit {
     this.isLoading = true;
     this.errorMessage = '';
     const value = this.form.getRawValue();
-    const dueDate =new Date(value.dueDate).toISOString().split('T')[0];
+    const dueDate = new Date(value.dueDate).toISOString().split('T')[0];
+    const todayDate = new Date().toISOString();
     const payload: Partial<Task> = {
       ...value,
       dueDate,
       tags: this.tags || [],
       isOverdue: getDiffInDays(dueDate) > 0,
-      updatedAt:new Date().toISOString(),
+      updatedAt: todayDate,
     };
     if (payload.status == 'done') {
       delete payload.isOverdue;
@@ -115,7 +116,7 @@ export class UpdateTaskComponent implements OnInit {
     if (this.editElement && this.editElement.id) {
       updateTask$ = this.tasksService.updateTask(this.editElement.id, payload);
     } else {
-      payload.createdAt=new Date().toISOString();
+      payload.createdAt = todayDate;
       updateTask$ = this.tasksService.addTask(payload);
     }
     updateTask$.subscribe({

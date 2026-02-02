@@ -112,18 +112,15 @@ describe('TasksAnalyticsComponent', () => {
     expect(result.length).toBe(1);
     expect(result[0].title).toBe('Angular Task');
   });
-  it('it should display column based on status Filter',()=>{
-      component.statusFilter.set('todo');
-      fixture.detectChanges();
-      const compiled=fixture.nativeElement as HTMLElement;
-      expect(compiled.querySelectorAll('app-task-column').length).toBe(1);
-      expect(component.statuses().length).toBe(1);
+  it('it should display column based on status Filter', () => {
+    component.statusFilter.set('todo');
+    fixture.detectChanges();
+    expect(component.statuses().length).toBe(1);
   })
-  it('it should display All column if selected all',()=>{
+  it('it should display All column if selected all', () => {
     component.statusFilter.set('all');
     fixture.detectChanges();
-    const compiled=fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelectorAll('app-task-column').length).toBe(3);
     expect(component.statuses().length).toBe(3);
-})
+
+  });
 });

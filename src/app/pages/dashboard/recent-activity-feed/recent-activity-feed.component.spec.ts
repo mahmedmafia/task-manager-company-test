@@ -40,6 +40,9 @@ describe('RecentActivityFeedComponent', () => {
       createdAt: '2024-01-01',
       updatedAt: '2024-01-01',
       completedAt: null,
+            assignee:{
+        name:'er'
+      }
     } as unknown as Task;
 
     tasksSignal.set({ tasks: [task] });
@@ -56,6 +59,9 @@ describe('RecentActivityFeedComponent', () => {
       createdAt: '2024-01-01',
       updatedAt: '2024-01-02',
       completedAt: null,
+      assignee: {
+        name: 'er'
+      }
     } as unknown as Task;
 
     tasksSignal.set({ tasks: [task] });
@@ -72,6 +78,9 @@ describe('RecentActivityFeedComponent', () => {
       createdAt: '2024-01-01',
       updatedAt: '2024-01-03',
       completedAt: '2024-01-03',
+      assignee: {
+        name: 'er'
+      }
     } as Task;
 
     tasksSignal.set({ tasks: [task] });
@@ -89,6 +98,9 @@ describe('RecentActivityFeedComponent', () => {
         createdAt: '2024-01-01',
         updatedAt: '2024-01-02',
         completedAt: null,
+        assignee:{
+        name:'er'
+      }
       },
       {
         id: '2',
@@ -96,6 +108,9 @@ describe('RecentActivityFeedComponent', () => {
         createdAt: '2024-01-01',
         updatedAt: '2024-01-05',
         completedAt: null,
+        assignee: {
+          name: 'er'
+        }
       },
     ] as unknown as Task[];
 

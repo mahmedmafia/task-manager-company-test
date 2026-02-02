@@ -7,6 +7,7 @@
           <th>Task ID</th>
           <th>Task Title</th>
           <th>Action</th>
+          <th>Assignee</th>
           <th>Action Date</th>
         </tr>
       </thead>
@@ -24,13 +25,15 @@
               {{ item.action | titlecase }}
             </span>
           </td>
-          <td>{{ item.date | date: 'short' }}</td>
+          <td><app-avatar-profile [name]="item.assignee" [size]="'md'"></app-avatar-profile></td>
+          <td>{{ item.date }}</td>
         </tr>
         }@placeholder {
         <tr *ngFor="let i of [1,2,3,4,5]">
           <td><p-skeleton width="50px" height="16px"></p-skeleton></td>
           <td><p-skeleton width="150px" height="16px"></p-skeleton></td>
           <td><p-skeleton width="80px" height="16px"></p-skeleton></td>
+          <td><p-skeleton width="40px" height="40px" shape="circle"></p-skeleton></td>
           <td><p-skeleton width="100px" height="16px"></p-skeleton></td>
         </tr>
         }

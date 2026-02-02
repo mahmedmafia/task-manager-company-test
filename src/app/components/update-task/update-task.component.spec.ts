@@ -100,6 +100,20 @@ describe('UpdateTaskComponent', () => {
 
   })
   describe('Create Task', () => {
+    it('should have createdAt and updatedAt the same value',()=>{
+        component.form.patchValue({
+        title: 'Task 1',
+        description: 'Desc',
+        status: 'todo',
+        priority: 'medium',
+        dueDate: new Date(),
+        tags: '',
+        assignee: { id: 1, name: 'zzz' },
+      });
+      component.save();
+      const args=mockTasksService.addTask.calls.mostRecent().args[0];
+      expect(args.createdAt).toEqual(args.updatedAt);
+    })
     it('should call addTask when creating new task', fakeAsync(() => {
       component.form.patchValue({
         title: 'Task 1',

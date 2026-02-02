@@ -79,7 +79,6 @@ describe('LoginComponent', () => {
     it('it should display  error message from response if login failed', fakeAsync(() => {
       spyOn(authServ, 'login').and.returnValue(throwError(() => new Error('Network Error')))
       component.form.setValue({ email: 't@t.com', password: '1234' });
-      console.log(component.errorMessage);
       component.onSubmit();
       tick();
       const compiled = fixture.nativeElement as HTMLElement;
@@ -91,7 +90,6 @@ describe('LoginComponent', () => {
     it('it should display custom error if login failed and no error response', fakeAsync(() => {
       spyOn(authServ, 'login').and.returnValue(throwError(() => ''))
       component.form.setValue({ email: 't@t.com', password: '1234' });
-      console.log(component.errorMessage);
       component.onSubmit();
       tick();
       const compiled = fixture.nativeElement as HTMLElement;

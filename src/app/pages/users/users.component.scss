@@ -1,0 +1,37 @@
+@use "styles/variables" as *;
+
+.card {
+  box-shadow: $card-shadow;
+  border-radius: 8px;
+}
+
+.td_operations {
+  text-align: unset !important;
+  display: flex;
+  height: 30px;
+  button {
+    height: 26px !important;
+    width: 26px !important;
+  }
+}
+.info-button {
+  background-color: $primary-color !important;
+}
+
+.div_operations {
+  gap: 5px;
+  display: inline-flex;
+}
+.add {
+  border-radius: 8px;
+  width: auto !important;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 8px 16px;
+  border: 1px solid #b7b9c0;
+  white-space: nowrap;
+
+  background: #2fb935;
+  color: white;
+  border: 1px solid #2fb935;
+}

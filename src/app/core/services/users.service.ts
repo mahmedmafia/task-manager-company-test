@@ -16,8 +16,8 @@ export class UsersService {
 
   private baseUrl = '/api/users';
   private storage = inject(StorageService);
-  private _users=signal<User[]>([]);
-  readonly users =this._users.asReadonly();
+  private _users = signal<User[]>([]);
+  readonly users = this._users.asReadonly();
   private readonly _loaded = signal(false);
   constructor(private http: HttpClient) { }
 
@@ -38,6 +38,27 @@ export class UsersService {
         this.storage.setCached(CACHE_KEY_USERS, users, CACHE_TTL_MS);
       }),
     ).subscribe();
+  }
+  updateUser(id: string, payload: Partial<User>) {
+    return this.http.put<User>(`${this.baseUrl}/${id}`, payload).pipe(tap(res => {
+      this._users.update((x) => {
+        const idx = x.findIndex(t => t.id === id);
+        const next = x.slice();
+        if (idx !== -1) next[idx] = res;
+        this.storage.setCached(CACHE_KEY_USERS, next, CACHE_TTL_MS);
+        return next;
+      });
+    }));
+  }
+  addUser(payload: Partial<User>) {
+    return this.http.post<User>(this.baseUrl, payload).pipe(tap(res => {
+      res.id = res.name;
+      this._users.update((x) => {
+        const next = [...x, res];
+        this.storage.setCached(CACHE_KEY_USERS, next, CACHE_TTL_MS);
+        return next;
+      });
+    }));
   }
 
   invalidateUsersCache(): void {

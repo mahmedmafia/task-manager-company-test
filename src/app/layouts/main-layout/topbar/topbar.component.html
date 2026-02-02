@@ -3,15 +3,14 @@
     <i class="pi pi-bars"></i>
   </button>
   <h2><span class="logo"><span class="icon">📖</span></span><span class="logo-text">Task Manager</span></h2>
-
-  <div class="input-container">
+  <div class="input-container" *ngIf="routePrefix()=='tasks'">
     <span class="icon">🔍</span>
     <input type="text" placeholder="Search tasks..." [value]="searchValue()"
       (input)="searchValue.set($any($event.target).value)" />
   </div>
 
   <div class="topbar-actions" *ngIf="auth.isAuthenticated()">
-    <app-avatar-profile [initials]="userInitials()" (click)="op.toggle($event)"></app-avatar-profile>
+    <app-avatar-profile [initials]="userName()" (click)="op.toggle($event)"></app-avatar-profile>
     <p-overlayPanel #op [dismissable]="true" [showCloseIcon]="false" styleClass="custom-overlay topbar-overlay">
       <div class="overlay-actions">
         <div class="overlay-item" (click)="logout()">

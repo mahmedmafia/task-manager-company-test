@@ -1,0 +1,66 @@
+@use "styles/variables" as *;
+p-calendar::ng-deep {
+  input {
+    padding: 0.375rem 0.75rem;
+    border: 1px solid #dee2e6;
+  }
+}
+::ng-deep {
+  .p-multiselect-panel {
+    .p-multiselect-header {
+      display: none;
+    }
+    .p-checkbox {
+      display: none;
+    }
+  }
+}
+
+.dialog_form {
+  height: 100%;
+}
+
+.dialog_body {
+  height: calc(100% - 60px);
+  overflow: auto;
+  @media (max-width: 768px) {
+    height: calc(100% - 100px);
+  }
+  padding: 14px 11px;
+  padding-bottom: 30px;
+  padding-top: 0px;
+}
+.form-label {
+  font-weight: 600;
+}
+
+.dialog_actions {
+  width: 100%;
+  button {
+    padding: 4px 24px;
+    border-radius: 4px;
+    margin: 0;
+    @media (max-width: 768px) {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+  .save {
+    background-color: $primary-color;
+  }
+  .cancel {
+    color: $danger-color;
+  }
+}
+
+/* Responsive tweaks */
+@media (max-width: 640px) {
+  .dialog_form .dialog_body {
+    padding: 12px;
+  }
+}
+::ng-deep .p-dialog {
+  @media (max-width: $breakpoint-mobile) {
+    width: 80% !important;
+  }
+}

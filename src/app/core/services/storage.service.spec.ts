@@ -30,7 +30,6 @@ describe('StorageService', () => {
       ],
     });
 
-    // console.log("🚀 ~ mockStorage:", mockStorage)
     service = TestBed.inject(StorageService);
   });
 

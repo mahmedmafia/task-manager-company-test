@@ -10,5 +10,9 @@ import { Component, Input } from '@angular/core';
 })
 export class AvatarProfileComponent {
   @Input() initials: string = '';
-  @Input() size: string = 'lg';
+  @Input() size: 'md' |'sm' | 'lg' = 'lg';
+  @Input()
+  set name(value: string) {
+    this.initials = value.split(' ').map(s => s[0]).join('').toUpperCase() || value.slice(0, 2).toUpperCase() || '';
+  }
 }
