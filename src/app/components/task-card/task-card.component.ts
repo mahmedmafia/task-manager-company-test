@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { AfterViewInit, ChangeDetectionStrategy, Component, inject, Input, signal, Signal } from '@angular/core';
 import { Task } from '../../core/models/tasks.model';
 import { AvatarProfileComponent } from "../avatar-profile/avatar-profile.component";
-import { TasksUtils } from '../../core/helpers/tasks.util';
+import { TasksUtils } from '../../core/utils/tasks.util';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TaskDialogService } from '../../core/services/task-dialog.service';
 import { UsersService } from '../../core/services/users.service';

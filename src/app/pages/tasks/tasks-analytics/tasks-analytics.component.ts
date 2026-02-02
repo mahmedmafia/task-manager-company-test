@@ -7,15 +7,16 @@ import { TaskFilterPipe } from './task-filter.pipe';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 import { TaskDialogService } from '../../../core/services/task-dialog.service';
-import { TasksUtils } from '../../../core/helpers/tasks.util';
+import { TasksUtils } from '../../../core/utils/tasks.util';
 import { ButtonDirective } from "primeng/button";
 import { UsersService } from '../../../core/services/users.service';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
+import { SkeletonModule } from 'primeng/skeleton';
 @Component({
   selector: 'app-tasks-analytics',
   standalone: true,
-  imports: [CommonModule, TaskColumnComponent, TaskFilterPipe, ButtonDirective, FormsModule, DropdownModule],
+  imports: [CommonModule, TaskColumnComponent, TaskFilterPipe, ButtonDirective, FormsModule, DropdownModule,SkeletonModule],
   templateUrl: './tasks-analytics.component.html',
   styleUrl: './tasks-analytics.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

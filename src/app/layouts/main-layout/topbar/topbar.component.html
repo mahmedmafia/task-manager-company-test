@@ -10,7 +10,7 @@
       (input)="searchValue.set($any($event.target).value)" />
   </div>
 
-  <div class="topbar-actions">
+  <div class="topbar-actions" *ngIf="auth.isAuthenticated()">
     <app-avatar-profile [initials]="userInitials()" (click)="op.toggle($event)"></app-avatar-profile>
     <p-overlayPanel #op [dismissable]="true" [showCloseIcon]="false" styleClass="custom-overlay topbar-overlay">
       <div class="overlay-actions">

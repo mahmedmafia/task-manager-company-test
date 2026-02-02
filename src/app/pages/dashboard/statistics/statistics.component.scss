@@ -1,6 +1,5 @@
 @use "styles/variables" as *;
 
-
 .stat-card {
   padding: 14px;
   border-radius: 8px;
@@ -10,13 +9,16 @@
   height: 146px;
   gap: 10px;
   background-color: white;
-  box-shadow:$card-shadow;
+  box-shadow: $card-shadow;
+  @media (min-width: $breakpoint-mobile) and (max-width: $breakpoint-md) {
+    display: block;
+    height: 126px;
+  }
   .header {
     display: flex;
     align-items: center;
     gap: 8px;
     height: 30px;
-    margin-bottom: 12px;
     .icon {
       height: 25px;
       font-size: 18px;

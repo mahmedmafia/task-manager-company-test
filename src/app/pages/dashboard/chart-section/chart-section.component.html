@@ -1,4 +1,4 @@
-<div class="row mt-3 ">
+<div class="row mt-3 " *ngIf="tasks()">
   <div class="col-12">
     <div style="background-color: white;" class="charts_container">
       <div class=" btn-container pt-2 mx-auto">
@@ -10,14 +10,14 @@
         </div>
       </div>
       <div class="row mt-0">
-        <div class="col-lg-3">
+        <div class="pi-container col-lg-3">
           <div class="card pie_card p-2 chart-container rounded-1">
             <div>
               <p-chart type="pie" [data]="tasksChartData()" [options]="taskChartOptions()"></p-chart>
             </div>
           </div>
         </div>
-        <div class="col-lg-9">
+        <div class="bar-container  col-lg-9">
           <div class="card p-2 chart-container rounded-1">
             <div>
               <p-chart type="bar" [data]="usersChartData()" [options]="usersChartOptions()"></p-chart>

@@ -5,11 +5,11 @@ import { TasksService } from '../../core/services/tasks.service';
 import { Task, TaskPriority, TaskStatus } from '../../core/models/tasks.model';
 import {  DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ButtonModule } from 'primeng/button';
-import { TasksUtils } from '../../core/helpers/tasks.util';
+import { TasksUtils } from '../../core/utils/tasks.util';
 import { CalendarModule } from 'primeng/calendar';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { UsersService } from '../../core/services/users.service';
-import { getDiffInDays } from '../../core/helpers/shared.util';
+import { getDiffInDays } from '../../core/utils/shared.util';
 
 
 @Component({

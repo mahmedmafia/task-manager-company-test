@@ -1,9 +1,9 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { AfterViewInit, Component, computed, inject, signal } from '@angular/core';
 import { ChartModule } from 'primeng/chart';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { TasksService } from '../../../core/services/tasks.service';
-import { TasksUtils } from '../../../core/helpers/tasks.util';
+import { TasksUtils } from '../../../core/utils/tasks.util';
 import { Task } from '../../../core/models/tasks.model';
 import { UsersService } from '../../../core/services/users.service';
 import { CommonModule } from '@angular/common';
@@ -19,6 +19,8 @@ export class ChartSectionComponent {
   baseOptions: any;
   taskServ = inject(TasksService);
   userServ = inject(UsersService);
+
+
   constructor() {
     this.taskServ.getTasks();
     this.userServ.getUsers();
@@ -60,8 +62,8 @@ export class ChartSectionComponent {
         legend: {
           position: 'top',
         },
-        afterDatasetsDraw:(ch:any)=>{
-            console.log(ch);
+        afterDatasetsDraw: (ch: any) => {
+          console.log(ch);
         },
         datalabels: {
           color: '#fff',

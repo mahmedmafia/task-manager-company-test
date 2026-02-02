@@ -16,9 +16,9 @@ export class UsersService {
 
   private baseUrl = '/api/users';
   private storage = inject(StorageService);
-  readonly users = signal<User[]>([]);
+  private _users=signal<User[]>([]);
+  readonly users =this._users.asReadonly();
   private readonly _loaded = signal(false);
-
   constructor(private http: HttpClient) { }
 
   getUsers(forceRefresh = false) {
@@ -26,14 +26,14 @@ export class UsersService {
 
     const cached = forceRefresh ? null : this.storage.getCached<User[]>(CACHE_KEY_USERS);
     if (cached?.length !== undefined) {
-      this.users.set(cached);
+      this._users.set(cached);
       this._loaded.set(true);
       return;
     }
 
     this.http.get<User[]>(this.baseUrl).pipe(
       tap(users => {
-        this.users.set(users);
+        this._users.set(users);
         this._loaded.set(true);
         this.storage.setCached(CACHE_KEY_USERS, users, CACHE_TTL_MS);
       }),

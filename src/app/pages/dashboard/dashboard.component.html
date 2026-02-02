@@ -1,3 +1,25 @@
+@defer (on viewport) {
 <app-statistics></app-statistics>
+
+} @placeholder {
+<div>
+  <div class="row">
+    <div *ngFor="let i of [1,2,3,4]" class="col-3">
+      <div class="card d-flex gap-2" style="padding: 14px;">
+        <div class="d-flex align-items-center gap-2">
+          <p-skeleton height="20px" width="20px" class="mr-2"></p-skeleton>
+          <p-skeleton height="25px" width="50px"></p-skeleton>
+        </div>
+        <p-skeleton height="30px" width="40px"></p-skeleton>
+        <p-skeleton height="25px" width="60px"></p-skeleton>
+      </div>
+    </div>
+  </div>
+</div>
+}
 <app-recent-activity-feed></app-recent-activity-feed>
-<app-chart-section></app-chart-section>
+@defer(){
+<app-chart-section-shell></app-chart-section-shell>
+}@placeholder {
+
+}

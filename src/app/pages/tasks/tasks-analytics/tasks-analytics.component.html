@@ -3,28 +3,41 @@
     <div class="task-filter-bar">
       <div class="task-filter">
         @for (status of statusOptions; track status.value) {
-          <button pButton (click)="statusFilter.set(status.value)"
-            [ngClass]="statusFilter() === status.value ? 'p-button-primary' : 'p-button-transparent'">
-            {{ status.label }}
-          </button>
+        <button pButton (click)="statusFilter.set(status.value)"
+          [ngClass]="statusFilter() === status.value ? 'p-button-primary' : 'p-button-transparent'">
+          {{ status.label }}
+        </button>
         }
       </div>
       <div class=" task-filter-actions">
-        <p-dropdown [options]="priorityOptions" optionLabel="label" optionValue="value" [showClear]="false" placeholder="All"
-          (onChange)="priorityFilter.set($event.value)"></p-dropdown>
+        <p-dropdown [options]="priorityOptions" optionLabel="label" optionValue="value" [showClear]="false"
+          placeholder="All" (onChange)="priorityFilter.set($event.value)"></p-dropdown>
         <p-dropdown [options]="users()" optionLabel="name" optionValue="id" [showClear]="true" placeholder="All users"
           (onChange)="userFilter.set($event.value)"></p-dropdown>
-        <button type="button" class="new-task" (click)="addTask()">+ New Task</button>
+        <button aria-label="Add New Task" type="button" class="new-task" (click)="addTask()"><span
+            aria-hidden="true">+</span> New Task</button>
       </div>
     </div>
   </div>
+
   <div class="col-12 mt-3">
     <div class="board">
+      @defer(){
       @for(status of statuses(); track status) {
       <app-task-column [title]="status.label" [tasks]="filteredTasks() |taskFilter:status.value">
       </app-task-column>
       }
+      }@placeholder {
+      <div class="row">
+        <div class="col-md-4"><p-skeleton width="100%" height="100%" class="mt-3"></p-skeleton></div>
+        <div class="col-md-4"><p-skeleton width="100%" height="100%" class="mt-3"></p-skeleton></div>
+        <div class="col-md-4"><p-skeleton width="100%" height="100%" class="mt-3"></p-skeleton></div>
+      </div>
+
+      }
     </div>
 
   </div>
+
+
 </div>

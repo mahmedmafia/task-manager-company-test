@@ -2,7 +2,7 @@
   <div class="card-header">
     <span class="priority {{ task.priority }}">{{ task.priority | uppercase }}</span>
     <div class="menu" aria-label="menu">
-      <button type="button" class="menu-btn" (click)="op.toggle($event)">
+      <button type="button" class="menu-btn" aria-label="options" (click)="op.toggle($event)">
         <i class="pi pi-ellipsis-v"></i>
       </button>
       <p-overlayPanel #op [dismissable]="true" [showCloseIcon]="false" styleClass="custom-overlay">

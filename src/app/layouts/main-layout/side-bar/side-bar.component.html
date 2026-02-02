@@ -1,7 +1,8 @@
 <aside class="sidebar" [class.collapsed]="sidebar.isCollapsed()" [class.mobile-open]="sidebar.isMobileOpen()">
   <div class="sidebar-header">
-    <button type="button" class="sidebar-toggle" (click)="sidebar.toggleCollapsed()" >
-      <i class="pi" [class.pi-angle-double-left]="!sidebar.isCollapsed()" [class.pi-angle-double-right]="sidebar.isCollapsed()"></i>
+    <button type="button" aria-label="sidebar-toggle" class="sidebar-toggle" (click)="sidebar.toggleCollapsed()">
+      <i class="pi" [class.pi-angle-double-left]="!sidebar.isCollapsed()"
+        [class.pi-angle-double-right]="sidebar.isCollapsed()"></i>
     </button>
   </div>
   <nav class="side-bar">

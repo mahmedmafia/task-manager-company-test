@@ -6,11 +6,12 @@ import { toObservable } from '@angular/core/rxjs-interop';
 import { AuthService } from '../../../core/services/auth.service';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { SidebarService } from '../../../core/services/sidebar.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-topbar',
   standalone: true,
-  imports: [AvatarProfileComponent, OverlayPanelModule],
+  imports: [AvatarProfileComponent, OverlayPanelModule, CommonModule],
   templateUrl: './topbar.component.html',
   styleUrl: './topbar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

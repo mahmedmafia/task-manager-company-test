@@ -8,7 +8,7 @@ import { of, throwError } from 'rxjs';
 import { MessageService } from 'primeng/api';
 import { configureGlobalTestingModule } from '../../../test';
 import { Task } from '../../core/models/tasks.model';
-import { deepCompare } from '../../core/helpers/shared.util';
+import { deepCompare } from '../../core/utils/shared.util';
 
 const mockTasksService = {
   addTask: jasmine.createSpy('addTask').and.returnValue(of({ id: 1 })),

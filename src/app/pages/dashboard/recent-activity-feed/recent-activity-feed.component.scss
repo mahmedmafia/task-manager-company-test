@@ -1,5 +1,14 @@
-@use 'styles/variables' as *;
-.card{
+@use "styles/variables" as *;
+.card {
   border: 0;
   box-shadow: $card-shadow;
+}
+.table-responsive {
+  max-height: 200px;
+  overflow-y: auto;
+
+  @media (min-width: $breakpoint-mobile) and (max-width: $breakpoint-md) {
+   max-height:100px;
+   font-size:13px;
+  }
 }

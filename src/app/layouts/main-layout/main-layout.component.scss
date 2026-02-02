@@ -6,17 +6,24 @@ app-topbar::ng-deep {
     height: $topbar-height;
   }
 }
-
+.topbar-skeleton{
+  height: $topbar-height;
+}
+.sidebar-skeleton{
+  $sidebar-width: 240px;
+  width: $sidebar-width;
+}
 .main-content {
   display: flex;
   height: calc(100vh - $topbar-height);
   background-color: #f5f7fa;
-
   .focus-area {
     flex-grow: 1;
     padding: 24px;
-
-    @media (max-width: $breakpoint-mobile) {
+  }
+  @media (max-width: $breakpoint-mobile) {
+    height: calc(100%);
+    .focus-area {
       padding: 16px;
     }
   }

@@ -1,13 +1,14 @@
 import { Component, computed, inject } from '@angular/core';
 import { TasksService } from '../../../core/services/tasks.service';
 import { Task } from '../../../core/models/tasks.model';
-import { comparedDate, getDiffInDays } from '../../../core/helpers/shared.util';
+import { comparedDate, getDiffInDays } from '../../../core/utils/shared.util';
 import { CommonModule } from '@angular/common';
+import { SkeletonModule } from 'primeng/skeleton';
 
 @Component({
   selector: 'app-recent-activity-feed',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,SkeletonModule],
   templateUrl: './recent-activity-feed.component.html',
   styleUrl: './recent-activity-feed.component.scss'
 })
