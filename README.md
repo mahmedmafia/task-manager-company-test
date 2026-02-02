@@ -2,13 +2,25 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.9.
 
-## Development server
+## How to start
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+#### 1. Start the mock backend (first run)
 
-## Code scaffolding
+Run this command to generate mock data and start the mock backend server.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```bash
+npm run mock
+```
+
+#### 2. Start the development server
+
+```bash
+npm run start:dev
+```
+
+- Uses `proxy.conf.json` to forward API requests
+- Useful for avoiding CORS issues during development
+- Application runs on **http://localhost:4200**
 
 ## Build
 
@@ -18,10 +30,243 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+## Project Structure
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```
+src/
+├── app/
+│ ├── core/ # App-wide singletons & infrastructure
+│ ├── components/ # Shared Components
+| ├── Layouts/ # Custom Layout For guest/authorized
+│ ├── pages/ # Feature-based Pages (tasks, dashboard)
+│ └── app.routes.ts # Standalone routing
+├── assets/
+│ └── mocks/ # Mock backend JSON data
+├── styles/ # Global styles, resets, variables
+└── main.ts # Standalone bootstrap
+└── test.ts # tests entry points
+```
 
-## Further help
+## Mock Backend Strategy
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### JSON Server 
+Used for:
+- Rapid development
+- Decoupling frontend from backend
+- Predictable API behavior
+
+Supports:
+- GET
+- POST
+- PUT
+- DELETE
+
+---
+
+
+## Performance Considerations
+
+- Signals instead of RxJS subscriptions in components
+- Computed signals for derived data
+- Lazy API calls
+- OnPush change detection
+- Lazy Lady Routes
+
+
+### Architectural decision
+
+## Component Communication
+
+### Signals First
+
+We rely on **Angular Signals** instead Subjects(Emitter Subjects pattern Notification Based).
+why?
+-core believe signal is the future
+-prevent memory leaks caused by subscriptions.
+-changes are instantneous
+
+#### Pattern Used
+
+- **Writable signals in services**
+
+```ts
+//service
+userSearch = signal<string>("");
+```
+
+- **Readonly Or Writable access in components**
+
+```ts
+//first-component
+//update service signal to start emission
+service.userSearch.set(value);
+```
+
+- **Computed signals are used for derived state and reactive listeners.**
+
+```ts
+//second component dervice from listening
+searchValue = computed(() => service.userSearch());
+```
+
+## State Management Strategy
+
+### Signals First
+
+We rely on **Angular Signals** instead (NgRx)/Observables.
+why?
+
+- Provides the same benefits as NgRx/Observables for component communication.
+- Eliminates boilerplate while maintaining reactive and derived state.
+
+#### Pattern Used
+
+- **State is derived using computed signals, ensuring components have readonly access where needed.**
+
+```ts
+//service
+readonly users=signal<User[]>([])
+```
+
+- **Readonly access in components to enforce controlled state mutations.**
+
+```ts
+users = computed(() => service.users());
+```
+
+## Services Design
+
+### Feature Services
+
+responsible for:
+
+- Fetching data (HTTP)
+- Caching data in signals
+- Data transformation
+  They are **NOT** responsible for UI logic.
+
+### Storage Services
+
+control platform storage to:
+
+- set values in storage By keys
+- remove values from storage by keys
+- invalidate cache on expiry
+
+## Dialog & UI Logic
+
+### Dialog Abstraction
+
+Dialog opening logic is centralized in a **dedicated dialog service**.
+
+Why?
+
+- Reusability
+- Single Responsibility
+- Cleaner components
+
+```ts
+TaskDialogService.open(task?, header?)
+```
+
+Components do NOT:
+
+- Fetch dialog dependencies
+- Construct dialog configs
+
+---
+
+## Utilities
+Pure Utitilites Function Or Feature Static Methods Used By Services,Components
+Has:
+- Shared Logic Functions,
+- Static Feature Speicific Utitilites Functions
+why?
+- Pure ,
+- Stateless
+- Easily testable
+
+#### Shared Utils
+
+Lives in **utils/shared.util.ts** and is:
+
+```ts
+getDiffInDays(date: string): number
+```
+
+#### Feature-Specific Utilities
+
+Feature-specific helpers are grouped into **feature.util** as Static methods:
+
+- core business logic
+- shared constants
+  example:**Task Util**
+
+```ts
+TasksUtils.getOverdueText(task);
+```
+
+```ts
+//have different statuses
+static readonly statuses
+```
+
+## Component Design
+
+### Smart vs Presentational Components
+
+**Smart Components**:
+- Fetch data
+- Own signals
+- Handle orchestration
+
+**Presentational Components**:
+- Receive Inputs
+- Emit Outputs
+- No business logic
+```
+Task-Column
+Avatr-Profile
+sidebar
+```
+
+
+## Styling Strategy
+
+### CSS Layers
+We use **CSS Layers** to control style priority:
+
+Order:
+1. Reset
+2. Bootstrap
+3. PrimeNG
+4. App styles
+
+This prevents:
+- Style conflicts
+- Random overrides
+
+### Global vs Scoped Styles
+- Global styles → `styles/`
+- Component styles → `.component.scss`
+
+---
+
+## UI Libraries
+
+### PrimeNG
+Used for:
+- Dialogs
+- Calendar
+- Overlay panels
+- Charts
+
+### Bootstrap
+Used for:
+- Layout utilities
+- Grid system
+- Spacing helpers
+
+
+---
+
