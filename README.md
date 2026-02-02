@@ -5,8 +5,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Feature Specic Documentation 
 In ./FEATURE_DOCUMNETAION.md
 
-## Features You Wouldn't Find Or I didn't Meet
+## UnCovered Features
 - **test coverage**:Test Coverage 80%
+- **Using Latest Angular**:Didn't Migrate to Angular 21 
+- **Using HttpResource**:Using HttpResource To Handle Data
+- **Signals Form**?:This is is experimental Feature I hope you didnt expect it as requirment
 **Bonus Points Features **
 - **CI/CD Pipeline**: GitHub Actions for automated testing and build
 - **Docker**: Containerized application with docker-compose
