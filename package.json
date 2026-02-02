@@ -8,7 +8,9 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "generate-data": "node tools/generate-data.js",
-    "mock": "npm run generate-data && json-server --watch src/assets/mocks/db.json --port 3000",
+    "mock:generate": "npm run generate-data",
+    "mock:start": "json-server --watch src/assets/mocks/db.json --port 3000",
+    "mock": "npm run mock:generate && npm run mock:start",
     "start:dev": "ng serve --proxy-config proxy.conf.json"
   },
   "private": true,

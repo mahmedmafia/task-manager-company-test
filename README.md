@@ -18,12 +18,19 @@ In ./FEATURE_DOCUMNETAION.md
 
 #### 1. Start the mock backend (first run)
 
-Run this command to generate mock data and start the mock backend server.
-
+Run this command to generate mock clean data and start the mock backend server.
+**First Time**:Generate Data And Start Json Mock
 ```bash
 npm run mock
 ```
-
+**Sequentail Runs**:Avoid overwriting Data for every run
+```bash
+npm run mock:start
+```
+**Additional Script**:Generate/Overwrite-existing Data Only 
+```bash
+npm run mock:generate
+```
 #### 2. Start the development server
 
 ```bash
