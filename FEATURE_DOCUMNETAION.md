@@ -36,6 +36,9 @@ core Functionality/Sections
 
 # Technology Limitations & Learning Notes
 
+## Inheirtance Pattern 
+**should have made Class to share Features for update-task ,update-card**
+
 ## Signals in a Production Environment
 
 This project is my **first time using Angular Signals extensively in a production-oriented application**.  

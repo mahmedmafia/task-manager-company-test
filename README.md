@@ -2,6 +2,18 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.9.
 
+## Feature Specic Documentation 
+In ./FEATURE_DOCUMNETAION.md
+
+## Features You Wouldn't Find Or I didn't Meet
+- **test coverage**:Test Coverage 80%
+**Bonus Points Features **
+- **CI/CD Pipeline**: GitHub Actions for automated testing and build
+- **Docker**: Containerized application with docker-compose
+- **Internationalization (i18n)**: Multi-language support
+- **Accessibility Audit**: WCAG 2.1 AA compliance
+- **Performance Metrics**: Lighthouse score > 90
+
 ## How to start
 
 #### 1. Start the mock backend (first run)
@@ -30,8 +42,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Feature Specic Documentation 
-In ./FEATURE_DOCUMNETAION.md
+# Project Over View
 
 ## Project Structure
 
