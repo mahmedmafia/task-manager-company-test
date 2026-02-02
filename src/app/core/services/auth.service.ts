@@ -1,7 +1,7 @@
 import { Injectable, signal, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Observable, of, tap, catchError } from 'rxjs';
+import { Observable, of, tap, catchError, throwError } from 'rxjs';
 import { StorageService } from './storage.service';
 
 const AUTH_TOKEN_KEY = 'auth_token';

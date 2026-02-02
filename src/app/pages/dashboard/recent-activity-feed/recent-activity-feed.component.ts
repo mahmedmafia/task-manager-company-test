@@ -16,12 +16,12 @@ export class RecentActivityFeedComponent {
   constructor() {
     this.taskServ.getTasks();
   }
-  tasks = computed(() => this.taskServ.tasks().tasks); // assuming tasks() is Task[]
+  tasks = computed(() => this.taskServ.tasks().tasks);
 
   feed = computed(() => this.generateActivities(this.tasks()));
   generateActivities(tasks: Task[]) {
     const activities: {taskTitle:string,taskId:string,action:string,date:string}[] = [];
-    tasks.sort((a, b) => comparedDate(a.updatedAt, b.updatedAt)).forEach(t => {
+    tasks.sort((a, b) => comparedDate(b.updatedAt, a.updatedAt)).forEach(t => {
       if (t.completedAt) {
         activities.push({
           taskId: t.id,

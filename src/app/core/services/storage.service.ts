@@ -14,7 +14,6 @@ interface CachedItem<T> {
 export class StorageService {
   private readonly platformId = inject(PLATFORM_ID);
   private readonly storage: Storage | null = null;
-
   constructor() {
     if (isPlatformBrowser(this.platformId) && typeof localStorage !== 'undefined') {
       this.storage = localStorage;
@@ -67,7 +66,7 @@ export class StorageService {
     const keys: string[] = [];
     for (let i = 0; i < this.storage.length; i++) {
       const k = this.storage.key(i);
-      if (k?.startsWith(STORAGE_PREFIX)) keys.push(k);
+      keys.push(k!);
     }
     keys.forEach(k => this.storage!.removeItem(k));
   }

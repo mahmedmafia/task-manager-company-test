@@ -61,6 +61,7 @@ export class UpdateTaskComponent implements OnInit {
         setTimeout(() => {
           this.form.get('completedAt')?.setValue(this.today);
           this.isCompletedAt.set(true);
+          this.form.get('dueDate')?.disable();
         }, 10)
       } else {
         this.form.removeControl('completedAt', { emitEvent: false });
@@ -96,10 +97,6 @@ export class UpdateTaskComponent implements OnInit {
   }
 
   save() {
-    if (this.form.invalid) {
-      this.form.markAllAsTouched();
-      return;
-    }
     this.isLoading = true;
     this.errorMessage = '';
     const value = this.form.getRawValue();

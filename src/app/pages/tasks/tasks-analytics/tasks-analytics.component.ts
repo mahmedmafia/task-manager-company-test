@@ -20,7 +20,7 @@ import { DropdownModule } from 'primeng/dropdown';
   styleUrl: './tasks-analytics.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TasksAnalyticsComponent {
+export class TasksAnalyticsComponent  {
   ref: DynamicDialogRef | undefined;
   taskDialogService = inject(TaskDialogService);
   private tasksService = inject(TasksService);

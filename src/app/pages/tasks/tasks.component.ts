@@ -6,7 +6,7 @@ import { TasksAnalyticsComponent } from './tasks-analytics/tasks-analytics.compo
   standalone: true,
   imports: [TasksAnalyticsComponent],
   templateUrl: './tasks.component.html',
-  styleUrl: './tasks.component.scss'
+  styleUrl: './tasks.component.scss',
 })
 export class TasksComponent {
 

@@ -1,17 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { StatisticsComponent } from './statistics.component';
+import { configureGlobalTestingModule } from '../../../../test';
 
 describe('StatisticsComponent', () => {
   let component: StatisticsComponent;
   let fixture: ComponentFixture<StatisticsComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
+    await configureGlobalTestingModule({
       imports: [StatisticsComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(StatisticsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

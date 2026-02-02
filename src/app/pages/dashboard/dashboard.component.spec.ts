@@ -1,17 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DashboardComponent } from './dashboard.component';
+import { configureGlobalTestingModule } from '../../../test';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
+    await configureGlobalTestingModule({
       imports: [DashboardComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(DashboardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

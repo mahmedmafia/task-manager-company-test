@@ -36,14 +36,6 @@ export class TasksService {
         this.tasksLoaded.set(true);
         this.storage.setCached(CACHE_KEY_TASKS, res, CACHE_TTL_MS);
       }),
-      catchError(() => {
-        const fallback = this.storage.getCached<TasksResponse>(CACHE_KEY_TASKS);
-        if (fallback?.tasks) {
-          this.tasks.set(fallback);
-          this.tasksLoaded.set(true);
-        }
-        return of(null);
-      })
     ).subscribe();
   }
 

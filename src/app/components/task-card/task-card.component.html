@@ -1,4 +1,4 @@
-<div class="task-card" [class.overdue]="task.isOverdue==true">
+<div class="task-card" [class.overdue]="task.isOverdue">
   <div class="card-header">
     <span class="priority {{ task.priority }}">{{ task.priority | uppercase }}</span>
     <div class="menu" aria-label="menu">
@@ -7,11 +7,11 @@
       </button>
       <p-overlayPanel #op [dismissable]="true" [showCloseIcon]="false" styleClass="custom-overlay">
         <div class="overlay-actions">
-          <div class="overlay-item" (click)="editTask(task)">
+          <div class="overlay-item" id="editBtn" (click)="editTask(task)">
             <i class="pi pi-pencil"></i>
             <span>Edit</span>
           </div>
-          <div class="overlay-item" (click)="deleteTask($event)">
+          <div class="overlay-item" id="deleteBtn" (click)="deleteTask($event)">
             <i class="pi pi-trash"></i>
             <span>Delete</span>
           </div>

@@ -60,7 +60,7 @@
 
           <div class="col-md-6">
             <label class="form-label" for="duecalendarButton">Due date *</label>
-            <p-calendar [disabled]="isCompletedAt()" inputId="duecalendarButton" appendTo="body"
+            <p-calendar  inputId="duecalendarButton" appendTo="body"
               formControlName="dueDate" [showIcon]="true" [showOnFocus]="false" dateFormat="yy-mm-dd" type="date"
               [ngClass]="{'ng-invalid ng-dirty': form.get('dueDate')?.invalid && form.get('dueDate')?.touched}" />
             @if (form.get('dueDate')?.invalid && form.get('dueDate')?.touched) {
