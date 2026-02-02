@@ -148,10 +148,10 @@ responsible for:
 - Data transformation
   They are **NOT** responsible for UI logic.
 
-### Storage Services
-
-control platform storage to:
-
+## Cache Design
+**Havent Tried Interceptor Caching Before So I didnt Risk Heavy Cache Logic** 
+have storage service to encapsulate cache logic based on cache key,ttl(time to live ).
+- cache entries get requets
 - set values in storage By keys
 - remove values from storage by keys
 - invalidate cache on expiry
